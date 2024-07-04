@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>voyage sous marin Application - Gestion de Sécurité</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color:rgb(25, 149, 203);
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #010a05;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+
+        .container {
+            padding: 100px 50px 50px;
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #238eda;
+        }
+
+        .container p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .form-container h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #238eda;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"],
+        .form-container input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #0f3da7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #292bb9;
+        }
+
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            max-height: 400px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatbot-header {
+            background-color: #238eda;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .chatbot-messages {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .chatbot-input button {
+            padding: 10px;
+            background-color: #238eda;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .chatbot-input button:hover {
+            background-color: #1a7ac7;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .message.user {
+            background-color: #e1f3fb;
+            text-align: right;
+        }
+
+        .message.bot {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="projet.html">Accueil</a>
+        <a href="reservation.html">Réservation</a>
+        <a href="compte.html">Mon Compte</a>
+        <a href="securite.html">Gestion de Sécurité</a>
+    </nav>
+
+    <div class="container">
+        <h1>Gestion de Sécurité</h1>
+        <p>Bienvenue sur la page de gestion de sécurité de notre application Charity. Ici, vous pouvez gérer vos paramètres de sécurité et protéger vos informations personnelles.</p>
+        
+        <!-- Formulaire de sécurité -->
+        <div class="form-container">
+            <h2>Modifier vos informations de sécurité</h2>
+            <form action="securite_handler.php" method="post">
+                <label for="current-password">Mot de passe actuel:</label>
+                <input type="password" id="current-password" name="current-password" required>
+
+                <label for="new-password">Nouveau mot de passe:</label>
+                <input type="password" id="new-password" name="new-password" required>
+
+                <label for="confirm-password">Confirmer le nouveau mot de passe:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <label for="email">Adresse e-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <input type="submit" value="Enregistrer">
+            </form>
+        </div>
+    </div>
+
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">
+            Chatbot
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot">Bonjour ! Comment puis-je vous aider ?</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Tapez votre message...">
+            <button onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var input = document.getElementById("chatbot-input");
+            var messages = document.getElementById("chatbot-messages");
+
+            if (input.value.trim() !== "") {
+                var userMessage = document.createElement("div");
+                userMessage.className = "message user";
+                userMessage.textContent = input.value;
+                messages.appendChild(userMessage);
+
+                var botMessage = document.createElement("div");
+                botMessage.className = "message bot";
+                messages.appendChild(botMessage);
+
+                var botResponse = getBotResponse(input.value);
+                typeText(botMessage, botResponse, 50);
+
+                messages.scrollTop = messages.scrollHeight;
+                input.value = "";
+            }
+        }
+
+        function getBotResponse(input) {
+            if (input.toLowerCase().includes("sécurité")) {
+                return "Pour des questions de sécurité, vous pouvez consulter notre guide sur la sécurité.";
+            } else if (input.toLowerCase().includes("compte")) {
+                return "Vous pouvez gérer votre compte en visitant la page 'Mon Compte'.";
+            } else {
+                return "Désolé, je ne comprends pas votre question. Pouvez-vous reformuler ?";
+            }
+        }
+
+        function typeText(element, text, speed) {
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                }
+            }
+            typing();
+        }
+    </script>
+</body>
+</html>

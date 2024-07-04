@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>voyage sous marin Application</title>
+    <link rel="stylesheet" type="text/css" href="yes.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .background-video {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+
+        .bouton {
+            padding: 15px 50px;
+            font-size: 1.2em;
+            background-color: #238eda;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .bouton:hover {
+            background-color: #292bb9;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-video">
+        <video autoplay muted loop>
+            <source src="aastt.mp4" type="video/mp4">
+        </video>
+        <div class="content">
+            <h1>Bienvenue Dans notre monde</h1>
+            <p>Prêt à vous lancer dans l'aventure ? <br>Explorez, découvrez, et créez vos propres souvenirs inoubliables. Votre aventure commence ici !</p>
+            <a href="formulairvoyage.html">
+                <button class="bouton">Reserver</button>
+            </a>
+        </div>
+        <nav class="navbar">
+            <a href="#accueil">Accueil</a>
+            <a href="formulairevoyage.html">Réservation</a>
+            <a href="service.html">Services</a>
+            <a href="securite.html">Gestion de Sécurité</a>
+        </nav>
+    </div>
+
+</body>
+</html>
